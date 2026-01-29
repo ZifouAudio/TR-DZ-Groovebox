@@ -1,4 +1,7 @@
 # 🥁 TR-DZ : Daisy Seed Tech House Drum Machine
+[![Démo TR-DZ sur YouTube](https://img.youtube.com/vi/K2HNfEA7Zsw/0.jpg)](https://www.youtube.com/shorts/K2HNfEA7Zsw)
+
+> 📹 **Clique sur l'image pour voir la démo (Son activé !)**
 ![Prototype TR-DZ](tr-dz-prototype.jpg)
 ![Version](https://img.shields.io/badge/firmware-v8.0-blue) ![Platform](https://img.shields.io/badge/platform-Daisy%20Seed-green) ![License](https://img.shields.io/badge/license-MIT-lightgrey)
 
