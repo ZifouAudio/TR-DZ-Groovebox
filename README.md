@@ -49,7 +49,7 @@
 | **Fils de connexion** | - | Jumper wires |
 | **Sortie Audio** | 1 | Jack 6.35mm ou Jack 3.5mm stéréo |
 
-*(À venir dans la V9.0 : Intégration de puces 74HC165 pour 16 boutons physiques)*
+*(À venir dans la V9.1 : Intégration de puces 74HC165 pour 16 boutons physiques)*
 
 ---
 
