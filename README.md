@@ -38,10 +38,9 @@
 
 ## 📂 Project Structure
 
-- `/src`: Core C++ firmware (libdaisy / daisysp).
+- `src/`: Core C++ firmware (libdaisy / daisysp).
 - `TR-DZ_V11.ino`: The main integrated engine.
 - `Schematics/`: [Full wiring and pinout documentation](./Schematics/WIRING.md)
-   : Full pinout and schematic documentation.
 - `SPECIFICATIONS.md`: Deep dive into the AI generative roadmap and DSP logic.
 
 ---
