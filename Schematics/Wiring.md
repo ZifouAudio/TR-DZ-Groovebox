@@ -1,4 +1,4 @@
-# 🔌 Wiring Guide - TR-DZ v13 (Industrial Edition)
+# 🔌 Wiring Guide - TR-DZ v13
 
 This document details the physical connections for the **TR-DZ v13**.
 This version uses an **Electro-Smith Daisy Seed** coupled with a **CD74HC4067 Analog Multiplexer** to manage 8 potentiometers via a single analog input.
