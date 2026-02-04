@@ -1,72 +1,94 @@
+# 🥁 TR-DZ: The Hacker's Groovebox (v13)
 
-# 🎹 TR-DZ: The Ultimate Tech-House Kick & Bass Synthesizer
-[![Démo TR-DZ sur YouTube](https://img.youtube.com/vi/K2HNfEA7Zsw/0.jpg)](https://www.youtube.com/shorts/K2HNfEA7Zsw)
-> 📹 **Click on the image to see the demo (Sound enabled!)**
+![Daisy Platform](https://img.shields.io/badge/Platform-Daisy%20Seed-yellow) ![License](https://img.shields.io/badge/License-MIT-blue) ![Status](https://img.shields.io/badge/Status-v13%20Industrial-green)
 
-![Version](https://img.shields.io/badge/Version-V11-blue)
-![Hardware](https://img.shields.io/badge/Platform-Daisy_Seed-green)
-![License](https://img.shields.io/badge/License-MIT-yellow)
+> **A DIY, Open-Source Tech House Drum Machine built on the Electro-Smith Daisy Seed.** > *Code-first, breadboard-friendly, and ready for the club.*
 
-**TR-DZ** is a high-performance hybrid drum machine and bass synthesizer built on the **Daisy Seed (STM32H7)** platform. It is specifically engineered for the "Zero Friction" creation of the fundamental Tech-House couple: the **Kick** and the **Bass**.
-
-> "The music is not in the menu. It's in the interaction." — TR-DZ Manifesto.
+[![TR-DZ Demo](https://img.youtube.com/vi/K2HNfEA7Zsw/0.jpg)](https://www.youtube.com/shorts/K2HNfEA7Zsw)
+*(Click above to watch the previous v9 Demo - v13 Demo coming soon!)*
 
 ---
 
-## 🔥 Key Features
-
-- **Native Sidechain (Ducking):** A real-time DSP link where the Kick envelope dynamically carves space in the Bass signal. No external compression needed.
-- **Hybrid DSP Engine:** - **Kick:** Analog-modeled sine oscillator with ultra-fast exponential pitch envelopes.
-    - **Bass:** Rich polyblep oscillators with resonant filters.
-    - **Drums:** Dedicated Snare and Hi-Hat synthesis engines.
-- **Hardware Agnostic UI:** Optimized for a **CD74HC4067** 16-channel multiplexer and **SH1106** OLED display.
-- **Performance Sequencer:** 16-step grid with real-time swing and parameter control.
+## ⚡️ What's New in v13 (Industrial Edition)?
+The **v13** update transforms the TR-DZ from a prototype into a performance instrument:
+* **Procedural Randomizer:** Long-press the button to generate instant, coherent Tech-House patterns (Kick on beat, Snare on backbeat, syncopated Hats).
+* **Quadratic Sidechain:** New DSP algorithm providing a heavy, "French Touch" style pumping effect between Kick and Bass.
+* **Soft Clip Drive:** Optimized cubic saturation for a louder, warmer sound without CPU overload.
+* **Acid Bass:** Switched from Square to **Sawtooth** wave for more aggressive harmonics.
 
 ---
 
-## 🛠 Hardware Specifications
+## 🎛️ Audio Engine Features
+The TR-DZ runs at **48kHz / 24-bit** with a custom C++ engine optimized for Arduino IDE.
 
-| Component | Specification |
-| :--- | :--- |
-| **MCU** | Daisy Seed v1.1 (Cortex-M7) |
-| **Audio** | 24-bit / 48kHz Stereo |
-| **Multiplexer** | CD74HC4067 (up to 16 potentiometers) |
-| **Display** | OLED SH1106 (I2C) |
-| **Inputs** | 4-knob core (BPM, Cutoff, Swing, Kick Decay) + Step Button |
-
----
-
-## 📂 Project Structure
-
-- `src/`: Core C++ firmware (libdaisy / daisysp).
-- `TR-DZ_V11.ino`: The main integrated engine.
-- `Schematics/`: [Full wiring and pinout documentation](./Schematics/Wiring.md)
-- `SPECIFICATIONS.md`: Deep dive into the AI generative roadmap and DSP logic.
+| Instrument | Type | Parameters |
+| :--- | :--- | :--- |
+| **Kick** | Sine + Pitch Env | Decay, Pitch Drop |
+| **Snare** | Triangle + White Noise | Tone Balance (Shell/Wires) |
+| **Hi-Hat** | Filtered Noise | Volume, Decay |
+| **Bass** | Sawtooth (PolyBLEP) | Resonance, Cutoff (Acid Style) |
+| **Master** | Global FX | **Soft Clipper** + **Swing** |
 
 ---
 
-## 🚀 Quick Start
+## 🔌 Hardware Setup & Wiring
 
-1. **Hardware Setup:** Connect your CD74HC4067 multiplexer to pins D0-D3 and A0.
-2. **Library Installation:** Ensure you have the [DaisyDuino](https://github.com/electro-smith/DaisyDuino) library in your Arduino IDE.
-3. **Flash:** Upload `TR-DZ_V11.ino` to your Daisy Seed.
-4. **Play:** Start tweaking the pots to feel the native sidechain pumping.
+**⚠️ IMPORTANT CHANGE v13:** The Multiplexer address pins have been moved to **D3-D6** to improve USB Serial stability. Please update your wiring.
+
+### Components
+* 1x **Daisy Seed** (v1.1 or v1.2)
+* 1x **CD74HC4067** (16-Channel Analog Multiplexer)
+* 1x **OLED Display** (SH1106 or SSD1306, I2C)
+* 1x **Push Button** (Momentary)
+* 8x **Potentiometers** (10k Linear)
+
+### Pinout Configuration
+
+| Component Pin | Connect To (Daisy Seed) | Notes |
+| :--- | :--- | :--- |
+| **MUX SIG (Z)** | **A0** (ADC 0) | Analog Signal Input |
+| **MUX S0** | **D3** | Address Bit 0 |
+| **MUX S1** | **D4** | Address Bit 1 |
+| **MUX S2** | **D5** | Address Bit 2 |
+| **MUX S3** | **D6** | Address Bit 3 |
+| **Button** | **D28** | Input Pullup |
+| **OLED SDA** | **D11** | I2C Data |
+| **OLED SCL** | **D12** | I2C Clock |
 
 ---
 
-## 📋 Roadmap
+## 🎚️ Control Mapping (Multiplexer)
 
-- [x] **V11:** Functional Kick/Bass engine with Native Sidechain.
-- [ ] **V12:** Hysteresis implementation for stable potentiometer reading.
-- [ ] **V13:** SD Card integration for sample-based percussion.
-- [ ] **Future:** AI-Assisted pattern mutation (VAE models).
+The potmeters are read via the Multiplexer using a **hysteresis algorithm** to prevent value jitter.
+
+| Mux Channel | Parameter | Description |
+| :--- | :--- | :--- |
+| **C0** | **BPM** | Tempo (60 - 200 BPM) |
+| **C1** | **Kick Decay** | Short thump to long Boom |
+| **C2** | **Cutoff** | Master Low-Pass + Bass Filter |
+| **C3** | **Resonance** | Bass "Acid" Factor |
+| **C4** | **Snare Tone** | Mix between Tone and Noise |
+| **C5** | **Hat Vol** | Hi-Hat Level Mixer |
+| **C6** | **Swing** | Groove amount (0 - 25%) |
+| **C7** | **Drive** | Master Saturation (Soft Clip) |
+
+### Button Logic
+* **Short Press:** Toggle Step (Kick)
+* **Long Press (>1s):** **RANDOMIZE PATTERN** (Generates a new full beat)
 
 ---
 
-## 🤝 Contribution & License
+## 🚀 Installation
 
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+1.  Install **Arduino IDE**.
+2.  Install **DaisyDuino** via the Library Manager.
+3.  Install **U8g2** library (for OLED).
+4.  Select Board: `Generic Daisy Seed`.
+5.  Upload `TR-DZ_v13.ino`.
 
-Distributed under the **MIT License**.
+---
 
-**Developer:** [Zifou-maker](https://github.com/Zifou-maker)
+## 📜 License
+This project is open-source under the MIT License. Feel free to fork, hack, and build your own!
+
+*Created by [Ton Nom GitHub]*
