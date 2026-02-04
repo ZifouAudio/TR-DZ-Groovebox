@@ -91,4 +91,4 @@ The potmeters are read via the Multiplexer using a **hysteresis algorithm** to p
 ## 📜 License
 This project is open-source under the MIT License. Feel free to fork, hack, and build your own!
 
-*Created by [Ton Nom GitHub]*
+*Created by [Zifou-maker]*
